@@ -1,28 +1,29 @@
-# STM32F446xx Bare-Metal Firmware Drivers
+# STM32F446xx Bare-Metal Firmware Portfolio
 
 ## Project Overview
-This project contains low-level firmware drivers for the **STM32F446RE (ARM Cortex-M4)**, developed entirely from scratch without using high-level libraries (HAL/LL). The focus is on **Register Transfer Level (RTL)** configuration to understand the hardware-software interface.
+This repository contains low-level firmware drivers for the **STM32F446RE (ARM Cortex-M4)**. These were developed from scratch using the **Reference Manual** and **Datasheet** to bypass abstraction layers and gain direct control over SoC functional units.
 
-## Key Technical Assets
-### 1. Register-Level Header File (`stm32f446xx.h`)
-* Defines peripheral base addresses for AHB and APB buses (RCC, GPIO, SPI).
-* Implements **Register Structure Definitions** using C structures and `volatile` pointers to map directly to hardware memory.
-* Includes **Clock Enable/Disable macros** to manage power for individual SoC functional units.
+## Technical Architecture
+### 1. Register-Level Mapping (`stm32f446xx.h`)
+* Implemented memory-mapped structures for **RCC, GPIO, SPI, and EXTI**.
+* Defined peripheral base addresses for AHB1, APB1, and APB2 bus systems.
+* Used `volatile` pointers to ensure compiler-safe access to hardware registers.
 
-### 2. GPIO Driver Implementation
-* Supports Mode configuration (Input, Output, Alternate Function, Analog).
-* Implements **Interrupt Handling (EXTI)** logic, including Rising/Falling edge detection.
-* Features API for pin-level operations: `GPIO_Read`, `GPIO_Write`, and `GPIO_Toggle`.
+### 2. GPIO Sub-system Driver
+* **Clock Management**: Implemented macros for enabling/disabling peripheral clocks via the RCC register.
+* **Pin Logic**: Supports Mode, Speed, Output Type, and Pull-up/Pull-down configuration.
+* **Interrupts**: Integrated NVIC and EXTI logic for real-time hardware events.
 
-### 3. SPI Driver Implementation
-* Supports **Master/Slave** modes and Full-Duplex/Half-Duplex/Simplex bus configurations.
-* Manages **Baud Rate** and **Clock Phase/Polarity (CPOL/CPHA)** settings.
-* Includes both **Polling** and **Interrupt-based (IT)** data transmission APIs.
+### 3. SPI Sub-system Driver
+* **Configurable Bus**: Supports Full-Duplex, Half-Duplex, and Simplex RX-only modes.
+* **Protocol Control**: Manages Baud Rate, Software Slave Management (SSM), and Data Frame Format (8/16-bit).
+* **Transmission**: Includes both Polling (Blocking) and Interrupt-driven (Non-blocking) APIs.
 
 ## Engineering Methodology
-* **Research & Definition:** Referenced the **STM32F446xx Reference Manual** to determine bit-offsets and register reset values.
-* **Verification (Work in Progress):** Functional testing performed on the **Nucleo-F446RE** board. Logic and timing validation is verified via **Saleae Logic Analyzer** to ensure protocol compliance with physical hardware.
+* **Documentation Study**: Analyzed the STM32F446xx Reference Manual for bit-definitions of the Control Registers (CR1/CR2).
+* **Hardware Validation**: Code verified on the **Nucleo-F446RE** board.
+* **Verification Logic**: Timing and protocol compliance verified using a **Saleae Logic Analyzer** (screenshots pending).
 
-## Future Roadmap
-* **Cellular & Wi-Fi Firmware:** Expanding research into L1/L2 stack architectures for wireless SoC integration.
-* **Interference Suppression:** Integrating AI/ML models to mitigate interference burdens in 6G communication hardware.
+## Research Interests & Roadmap
+* **AI/ML for 6G**: Ongoing work on interference suppression using ML/DL algorithms.
+* **Wireless Firmware**: Actively learning L1/L2 firmware stacks for Cellular and Wi-Fi SoC integration.
