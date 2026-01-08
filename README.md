@@ -1,4 +1,4 @@
-# STM32F446xx Bare-Metal Firmware Portfolio
+# STM32F446xx Bare-Metal Firmware
 
 ## Project Overview
 This repository contains low-level firmware drivers for the **STM32F446RE (ARM Cortex-M4)**. These were developed from scratch using the **Reference Manual** and **Datasheet** to bypass abstraction layers and gain direct control over SoC functional units.
