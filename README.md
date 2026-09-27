@@ -24,6 +24,3 @@ This repository contains low-level firmware drivers for the **STM32F446RE (ARM C
 * **Hardware Validation**: Code verified on the **Nucleo-F446RE** board.
 * **Verification Logic**: Timing and protocol compliance verified using a **Saleae Logic Analyzer** (screenshots pending).
 
-## Research Interests & Roadmap
-* **AI/ML for 6G**: Ongoing work on interference suppression using ML/DL algorithms.
-* **Wireless Firmware**: Actively learning L1/L2 firmware stacks for Cellular and Wi-Fi SoC integration.
